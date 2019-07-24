@@ -11,7 +11,7 @@ var Comment = require("../models/comment");
 router.get("/", function (req, res) {
 	if(req.query.search){
 		const regex = new RegExp(escapeRegex(req.query.search), "gi");
-        Campground.find({name: regex, description: regex}, function(err, allCampgrounds){
+        Campground.find({name: regex}, function(err, allCampgrounds){
            if(err){
                console.log(err);
            } else {
@@ -19,7 +19,7 @@ router.get("/", function (req, res) {
                   req.flash("error", "Campground not found");
 				  return res.redirect("back"); 
               } 
-              res.render("campgrounds/index",{campgrounds:allCampgrounds, noMatch: noMatch});
+              res.render("campgrounds/index",{campgrounds:allCampgrounds});
            }
         });
 	} else {
