@@ -56,6 +56,6 @@ app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
 app.use("/campgrounds/:id/reviews", reviewRoutes); 
 
-app.listen(process.env.PORT || 3000, process.env.IP, () =>{
-	console.log("server is running!"); 
-});
+app.listen(9000, () => {
+	console.log('server is listening on port 9000'); 
+}); 
