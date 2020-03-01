@@ -1,5 +1,5 @@
 //1. download dependencies, 2. require dependencies here 3. add below to app.use
-var express     = require("express"),
+const express     = require("express"),
     app         = express(),
     bodyParser  = require("body-parser"),
     mongoose    = require("mongoose"),
@@ -11,7 +11,7 @@ var express     = require("express"),
     Comment     = require("./models/comment"),
 	User 		= require("./models/user");
 
-var commentRoutes = require("./routes/comments"),
+const commentRoutes = require("./routes/comments"),
 	reviewRoutes = require("./routes/reviews"), 
 	campgroundRoutes = require("./routes/campgrounds"),
 	indexRoutes = require("./routes/index");

@@ -1,8 +1,8 @@
-var Campground = require("../models/campgrounds"); 
-var Comment = require("../models/comment"); 
-var Review = require("../models/review");
+const Campground = require("../models/campgrounds"), 
+ Comment = require("../models/comment"), 
+ Review = require("../models/review");
 
-var middlewareObj = {};
+let middlewareObj = {};
 
 middlewareObj.checkCampgroundOwnership = function(req, res, next){
 	if(req.isAuthenticated()){
@@ -44,13 +44,13 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
 		res.redirect("back"); 
 	}
 };
+
 middlewareObj.checkReviewOwnership = function(req, res, next) {
     if(req.isAuthenticated()){
         Review.findById(req.params.review_id, function(err, foundReview){
             if(err || !foundReview){
                 res.redirect("back");
             }  else {
-                // does user own the comment?
                 if(foundReview.author.id.equals(req.user._id)) {
                     next();
                 } else {
@@ -72,15 +72,13 @@ middlewareObj.checkReviewExistence = function (req, res, next) {
                 req.flash("error", "Campground not found.");
                 res.redirect("back");
             } else {
-                // check if req.user._id exists in foundCampground.reviews
-                var foundUserReview = foundCampground.reviews.some(function (review) {
+                let foundUserReview = foundCampground.reviews.some(function (review) {
                     return review.author.id.equals(req.user._id);
                 });
                 if (foundUserReview) {
                     req.flash("error", "You already wrote a review.");
                     return res.redirect("/campgrounds/" + foundCampground._id);
                 }
-                // if the review was not found, go to the next middleware
                 next();
             }
         });

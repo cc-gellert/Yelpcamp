@@ -1,6 +1,6 @@
-var mongoose = require("mongoose"); 
+const mongoose = require("mongoose"); 
 
-var reviewSchema = new mongoose.Schema({
+let reviewSchema = new mongoose.Schema({
 	rating: {
 		type: Number,
 		required: "Please provice a rating (1-5 stars).",

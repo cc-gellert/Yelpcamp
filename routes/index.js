@@ -1,8 +1,8 @@
-var express = require("express");
-var router = express.Router(); 
-var passport = require("passport"); 
-var User = require("../models/user"); 
-var middleware = require("../middleware"); 
+const express = require("express"),
+router = express.Router(), 
+passport = require("passport"), 
+User = require("../models/user"), 
+middleware = require("../middleware"); 
 
 router.get("/", function(req, res){
     res.render("landingPage");
@@ -14,7 +14,7 @@ router.get("/register", (req, res) => {
 });
 
 router.post("/register", function(req, res){
-    var newUser = new User({username: req.body.username});
+    let newUser = new User({username: req.body.username});
 	if(req.body.adminCode === "34ekrQcZmkcio56akld"){
 		newUser.isAdmin = true;
 	} 
@@ -35,6 +35,7 @@ router.post("/register", function(req, res){
 router.get("/login", (req, res) => {
 		res.render("login"); 
 });
+
 //login routes
 router.post("/login", passport.authenticate("local", 
 	{
